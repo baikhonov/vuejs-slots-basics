@@ -12,7 +12,7 @@ export default {
     UserList,
   },
   data() {
-    return { users: [], todos: [], hello: "world" };
+    return { users: [] };
   },
 
   mounted() {
