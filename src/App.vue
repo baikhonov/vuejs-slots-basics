@@ -1,28 +1,15 @@
 <template>
-  <List :items="users" :fields="['username', 'name']">
-    <template #item="{ item: user }">
-      {{ hello }} {{ user.name }} ({{ user.username }})
-    </template>
-  </List>
-  <hr />
-  <List :items="todos" :fields="['title']">
-    <template #item="slotProps">
-      <Todo :item="slotProps.item" />
-    </template>
-  </List>
+  <UserList :users="users" />
 </template>
 
 <script>
-import List from "./components/List.vue";
-import User from "./components/User.vue";
-import Todo from "./components/Todo.vue";
+import UserList from "./components/UserList.vue";
 
-import { loadUsers, loadTodos } from "./api.js";
+import { loadUsers } from "./api.js";
 export default {
   name: "App",
   components: {
-    List,
-    Todo,
+    UserList,
   },
   data() {
     return { users: [], todos: [], hello: "world" };
@@ -31,9 +18,6 @@ export default {
   mounted() {
     loadUsers().then((users) => {
       this.users = users;
-    });
-    loadTodos().then((todos) => {
-      this.todos = todos;
     });
   },
 };
